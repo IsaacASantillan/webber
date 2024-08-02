@@ -1,0 +1,80 @@
+html {
+    background-color: #003262;
+  }
+
+  .navbar ul {
+    list-style-type: none;
+    background-color: #46535E;
+    overflow: hidden;
+    text-align: center;
+    border: 5px solid #555;
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
+
+.navbar a {
+    color: white;
+    font-size: 25px;
+    font-family: sans-serif;
+    text-decoration: none;
+    padding: 20px 55px; /* Adjust padding as needed */
+    display: block;
+}
+
+.navbar a:hover {
+    background-color: black;
+}
+
+.navbar li {
+    display: inline-block;
+    padding: 0 15px; /* Add padding to control spacing */
+}
+
+#seal {
+    vertical-align: middle;
+    padding: 15px; /* Adjust padding as needed */
+    height: 80px;
+    margin-right: 15px; /* Add margin to the right of the image to space it from the links */
+}
+
+h3 {
+    position: relative;
+    top: 50px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    font-family: sans-serif;
+}
+
+
+
+.credits {
+    position: fixed;
+    bottom: 2px;
+    width: 100%; /* Ensure the element takes up the full width */
+    text-align: center; /* Center the text inside the element */
+    background-color: #FDB515;
+}
+
+.credits ul { /* Make the ul an inline-block element */
+    font-size: 10px;
+    list-style-type: none;
+    margin: 0 auto; /* Center the ul element horizontally */
+}
+
+
+
+#description {
+    position: relative;
+    font-size: 20px;
+    color: white; 
+    top: 120px;
+
+}
+
+#link {
+    position: relative;
+    font-size: 40px;
+    color: white;
+    top: 150px;
+}
