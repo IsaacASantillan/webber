@@ -38,3 +38,4 @@ if __name__ == '__main__':
         logging.info("Creating all tables...")
         clear_massspectral_table()
         create_massspectral()
+    logging.info("Database initialized and populated.")
