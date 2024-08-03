@@ -1,4 +1,4 @@
-
+import logging
 from faker import Faker
 from app import db, MassSpectral, app
 from create_terp_dict import terp_dict, terp_dict_length
@@ -35,5 +35,6 @@ def create_massspectral():
 
 if __name__ == '__main__':
     with app.app_context():
+        logging.info("Creating all tables...")
         clear_massspectral_table()
         create_massspectral()
