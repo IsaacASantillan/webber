@@ -1,7 +1,6 @@
-import random
-import sys
+
 from faker import Faker
-from server_table import db, MassSpectral, app
+from app import db, MassSpectral, app
 from create_terp_dict import terp_dict, terp_dict_length
 
 def clear_massspectral_table():

@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
@@ -101,4 +102,5 @@ def data():
 
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host='0.0.0.0', port=port)
