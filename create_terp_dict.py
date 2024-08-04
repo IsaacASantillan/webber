@@ -1,19 +1,25 @@
-import requests
+import boto3
+import io  # Import StringIO
+import pandas as pd  # Import pandas for handling data
 
-url = "https://drive.google.com/uc?export=download&id=1dBXsiJPITeSugkoj2MtqUIYpr5z_p7zu"
+# AWS credentials
+aws_access_key = "AKIAQKPILR6C4LLEUPO4"
+aws_secret_key = "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"
 
-response = requests.get(url)
-with open("local_file.txt", "wb") as f:
-    f.write(response.content)
+# Create an S3 client
+s3 = boto3.client('s3', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key)
+bucket_name = 'terpfile'
+dataset_key = "terp_FSL_NAPA_SOAS_GoA_mm2nist_2022.06.06.txt"
 
+# Retrieve the file from S3
+response = s3.get_object(Bucket=bucket_name, Key=dataset_key)
+dataset_content = response['Body'].read().decode('utf-8')
 
-
-
-#Default Dictionary
+# Default Dictionary
 databaseColumns = ["RT1-A", "RT2-A", "Name", "Suspected_matches", "Formula", "MW", "ExactMass", "CAS#", "Derivatization_Agent", "Comments", "Retention_index", "Num Peaks", "X-Values", "Y-Values", "Description", "DB#", "Synon"]
 databaseDictionary = {key: [] for key in databaseColumns}
 
-#Adds Values for X-Column and Y-Column
+# Adds Values for X-Column and Y-Column
 def coordinatesfunction(coordinates):
     xcoords = []
     ycoords = []
@@ -31,10 +37,9 @@ def addNAValues(dic):
         if len(dic[keys]) != lenValues:
             dic[keys].append("N/A")
 
-
-#Converts TextFile into dictionary which is then passed into pandas to create data frame (see pandas documentation)
-def textdictionary(textfile):
-    openfile = open(textfile, "r", encoding = "cp1252")
+# Converts TextFile into dictionary using StringIO
+def textdictionary(text_content):
+    openfile = io.StringIO(text_content)  # Use StringIO to treat the string as a file-like object
     contentLine = "Start"
     while contentLine:
         contentLine = openfile.readline()
@@ -51,15 +56,14 @@ def textdictionary(textfile):
             metadata = contentList[1].split()
             databaseDictionary["Comments"].append(metadata)
             continue
-        if columnvalue ==  '':
+        if columnvalue == '':
             databaseDictionary[columnnames].append("N/A")
         else:
             databaseDictionary[columnnames].append(columnvalue)
     openfile.close()
     return databaseDictionary   
 
-terp_dict = textdictionary("local_file.txt")
-terp_dict_length = terp_dict["Name"].__len__()
+terp_dict = textdictionary(dataset_content)
+terp_dict_length = len(terp_dict["Name"])  # Use len() function
 
-
-
+print(terp_dict_length)
