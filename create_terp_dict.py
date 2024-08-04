@@ -1,3 +1,16 @@
+import requests
+
+url = "https://drive.google.com/uc?export=download&id=1dBXsiJPITeSugkoj2MtqUIYpr5z_p7zu"
+
+response = requests.get(url)
+with open("local_file.txt", "wb") as f:
+    f.write(response.content)
+lines = response.text.splitlines()
+for line in lines:
+    print(line)
+
+
+
 #Default Dictionary
 databaseColumns = ["RT1-A", "RT2-A", "Name", "Suspected_matches", "Formula", "MW", "ExactMass", "CAS#", "Derivatization_Agent", "Comments", "Retention_index", "Num Peaks", "X-Values", "Y-Values", "Description", "DB#", "Synon"]
 databaseDictionary = {key: [] for key in databaseColumns}
@@ -47,7 +60,8 @@ def textdictionary(textfile):
     openfile.close()
     return databaseDictionary   
 
-terp_dict = textdictionary("./terp_FSL_NAPA_SOAS_GoA_mm2nist_2022.06.06.txt")
+terp_dict = textdictionary("local_file.txt")
 terp_dict_length = terp_dict["Name"].__len__()
+
 
 
