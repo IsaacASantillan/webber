@@ -33,5 +33,5 @@ def create_massspectral():
 
 
 with app.app_context():
-    clear_massspectral_table
+    clear_massspectral_table()
     create_massspectral()
