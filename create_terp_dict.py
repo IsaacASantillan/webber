@@ -5,9 +5,7 @@ url = "https://drive.google.com/uc?export=download&id=1dBXsiJPITeSugkoj2MtqUIYpr
 response = requests.get(url)
 with open("local_file.txt", "wb") as f:
     f.write(response.content)
-lines = response.text.splitlines()
-for line in lines:
-    print(line)
+
 
 
 
