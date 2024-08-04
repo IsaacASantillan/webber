@@ -1,4 +1,3 @@
-import logging
 from faker import Faker
 from server_table import db, MassSpectral, app 
 from create_terp_dict import terp_dict, terp_dict_length

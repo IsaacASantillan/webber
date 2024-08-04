@@ -1,6 +1,5 @@
 import boto3
 import io  # Import StringIO
-import pandas as pd  # Import pandas for handling data
 
 # AWS credentials
 aws_access_key = "AKIAQKPILR6C4LLEUPO4"
